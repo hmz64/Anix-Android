@@ -24,7 +24,11 @@ jobs:
           rm -rf .gradle 2>/dev/null
           ls -la
           pwd
-          ./gradlew :app:assembleDebug --no-daemon --stacktrace
+          # First check what projects gradle sees
+          ./gradlew projects 2>&1 || true
+          echo "---"
+          # Try listing all tasks
+          ./gradlew tasks --all 2>&1 | head -20 || true
           
       - name: Upload APK
         if: success()
