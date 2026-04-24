@@ -19,7 +19,7 @@ interface AniXApi {
     @POST("api/refresh")
     suspend fun refreshToken(): Response<AuthResponse>
     
-    // Anime API
+    // Auth API
     @GET("api/anime")
     suspend fun getAnimeList(): Response<ApiResponse<List<Anime>>>>
     
