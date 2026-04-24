@@ -19,15 +19,12 @@ jobs:
           java-version: 17
           distribution: temurin
           
-      - name: Check directory structure
-        run: |
-          pwd
-          ls -la
-          
       - name: Build Debug APK
         run: |
-          chmod +x gradlew
-          ./gradlew tasks --all 2>&1 | head -30
+          rm -rf .gradle 2>/dev/null
+          ls -la
+          pwd
+          ./gradlew :app:assembleDebug --no-daemon --stacktrace
           
       - name: Upload APK
         if: success()
