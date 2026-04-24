@@ -109,7 +109,7 @@ class AnimeRepositoryImpl @Inject constructor(
     private val api: AniXApi
 ) : AnimeRepository {
     
-    override suspend fun getAnimeList(): Result<List<Anime>>> = runCatching {
+    override suspend fun getAnimeList(): Result<List<Anime>> = runCatching {
         val response = api.getAnimeList()
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
@@ -121,37 +121,37 @@ class AnimeRepositoryImpl @Inject constructor(
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun searchAnime(query: String): Result<List<Anime>>> = runCatching {
+    override suspend fun searchAnime(query: String): Result<List<Anime>> = runCatching {
         val response = api.searchAnime(query)
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun getTrending(): Result<List<Anime>>> = runCatching {
+    override suspend fun getTrending(): Result<List<Anime>> = runCatching {
         val response = api.getTrending()
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun getRecommendations(): Result<List<Anime>>> = runCatching {
+    override suspend fun getRecommendations(): Result<List<Anime>> = runCatching {
         val response = api.getRecommendations()
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun getByGenre(genre: String): Result<List<Anime>>> = runCatching {
+    override suspend fun getByGenre(genre: String): Result<List<Anime>> = runCatching {
         val response = api.getByGenre(genre)
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun getByYear(year: Int): Result<List<Anime>>> = runCatching {
+    override suspend fun getByYear(year: Int): Result<List<Anime>> = runCatching {
         val response = api.getByYear(year)
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
     }
     
-    override suspend fun getRecentlyAdded(): Result<List<Anime>>> = runCatching {
+    override suspend fun getRecentlyAdded(): Result<List<Anime>> = runCatching {
         val response = api.getRecentlyAdded()
         if (response.isSuccessful) response.body()?.data ?: emptyList()
         else throw Exception(response.body()?.message)
