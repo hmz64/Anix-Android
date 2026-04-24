@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Anix-Android"
+rootProject.name = "AniX"
 include(":app")
