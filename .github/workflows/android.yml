@@ -24,11 +24,8 @@ jobs:
           rm -rf .gradle 2>/dev/null
           ls -la
           pwd
-          # First check what projects gradle sees
-          ./gradlew projects 2>&1 || true
-          echo "---"
-          # Try listing all tasks
-          ./gradlew tasks --all 2>&1 | head -20 || true
+          # List all tasks to see available projects
+          ./gradlew tasks --all 2>&1
           
       - name: Upload APK
         if: success()
