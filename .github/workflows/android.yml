@@ -31,6 +31,7 @@ jobs:
       - name: Build Debug APK
         run: |
           echo "sdk.dir=$ANDROID_HOME" > local.properties
+          gradle clean
           gradle assembleDebug
           
       - name: Upload APK
