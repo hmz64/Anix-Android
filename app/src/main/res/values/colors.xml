@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FFC15F3C</color>
-    <color name="ic_launcher_background">#FFC15F3C</color>
+    <color name="primary_variant">#FF8B4513</color>
+    <color name="secondary">#FF8B4513</color>
+    <color name="secondary_variant">#FF6B3510</color>
+    <color name="background">#FFF4F3EE</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="error">#FFB00020</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="on_background">#FF2B1E16</color>
+    <color name="on_surface">#FF2B1E16</color>
+    <color name="on_error">#FFFFFFFF</color>
+    <color name="muted">#FF9E9588</color>
+    
+    <!-- Dark Mode -->
+    <color name="primary_dark">#FFC15F3C</color>
+    <color name="background_dark">#FF1A1A1A</color>
+    <color name="surface_dark">#FF2A2A2A</color>
+    <color name="on_background_dark">#FFF4F3EE</color>
+    <color name="on_surface_dark">#FFF4F3EE</color>
 </resources>
