@@ -21,28 +21,28 @@ interface AniXApi {
     
     // Auth API
     @GET("api/anime")
-    suspend fun getAnimeList(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getAnimeList(): Response<ApiResponse<List<Anime>>>
     
     @GET("api/anime/{id}")
-    suspend fun getAnimeById(@Path("id") id: Long): Response<ApiResponse<Anime>>>>
+    suspend fun getAnimeById(@Path("id") id: Long): Response<ApiResponse<Anime>>>
     
     @GET("api/anime/search")
-    suspend fun searchAnime(@Query("q") query: String): Response<ApiResponse<List<Anime>>>>
+    suspend fun searchAnime(@Query("q") query: String): Response<ApiResponse<List<Anime>>>
     
     @GET("api/trending")
-    suspend fun getTrending(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getTrending(): Response<ApiResponse<List<Anime>>>
     
     @GET("api/recommendations")
-    suspend fun getRecommendations(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getRecommendations(): Response<ApiResponse<List<Anime>>>
     
     @GET("api/anime/by-genre/{genre}")
-    suspend fun getByGenre(@Path("genre") genre: String): Response<ApiResponse<List<Anime>>>>
+    suspend fun getByGenre(@Path("genre") genre: String): Response<ApiResponse<List<Anime>>>
     
     @GET("api/anime/by-year/{year}")
-    suspend fun getByYear(@Path("year") year: Int): Response<ApiResponse<List<Anime>>>>
+    suspend fun getByYear(@Path("year") year: Int): Response<ApiResponse<List<Anime>>>
     
     @GET("api/recently-added")
-    suspend fun getRecentlyAdded(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getRecentlyAdded(): Response<ApiResponse<List<Anime>>>
     
     // Watch History
     @GET("api/watch-history")
@@ -66,7 +66,7 @@ interface AniXApi {
     
     // Watchlist
     @GET("api/watchlist")
-    suspend fun getWatchlist(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getWatchlist(): Response<ApiResponse<List<Anime>>>
     
     @POST("api/watchlist")
     suspend fun addToWatchlist(@Body body: Map<String, Long>): Response<ApiResponse<Unit>>
@@ -131,13 +131,13 @@ interface AniXApi {
     
     // Admin/Moderator - Anime
     @GET("api/admin/anime")
-    suspend fun getAdminAnimeList(): Response<ApiResponse<List<Anime>>>>
+    suspend fun getAdminAnimeList(): Response<ApiResponse<List<Anime>>>
     
     @POST("api/admin/anime")
-    suspend fun addAnime(@Body body: Map<String, Any>): Response<ApiResponse<Anime>>>>
+    suspend fun addAnime(@Body body: Map<String, Any>): Response<ApiResponse<Anime>>>
     
     @PUT("api/admin/anime/{id}")
-    suspend fun updateAnime(@Path("id") id: Long, @Body body: Map<String, Any>): Response<ApiResponse<Anime>>>>
+    suspend fun updateAnime(@Path("id") id: Long, @Body body: Map<String, Any>): Response<ApiResponse<Anime>>>
     
     @DELETE("api/admin/anime/{id}")
     suspend fun deleteAnime(@Path("id") id: Long): Response<ApiResponse<Unit>>
