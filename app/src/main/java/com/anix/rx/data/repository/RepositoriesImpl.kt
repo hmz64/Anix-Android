@@ -2,7 +2,8 @@ package com.anix.rx.data.repository
 
 import com.anix.rx.data.api.AniXApi
 import com.anix.rx.data.api.PreferencesKeys
-import com.anix.rx.data.api.dataStore
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.anix.rx.data.model.*
 import com.anix.rx.domain.repository.*
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val api: AniXApi,
-    private val dataStore: androidx.datastore.preferences.core.PreferencesStore
+    private val dataStore: DataStore<Preferences>
 ) : AuthRepository {
     
     override suspend fun login(email: String, password: String): Result<AuthResponse> {
