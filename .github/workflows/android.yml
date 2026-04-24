@@ -19,13 +19,15 @@ jobs:
           java-version: 17
           distribution: temurin
           
-      - name: Build Debug APK
+      - name: Find project and build
         run: |
-          rm -rf .gradle 2>/dev/null
-          ls -la
           pwd
-          # List all tasks to see available projects
-          ./gradlew tasks --all 2>&1
+          ls -la
+          echo "===List files==="
+          cat settings.gradle.kts | head -20
+          echo "===Try simple build==="
+          chmod +x gradlew
+          ./gradlew build
           
       - name: Upload APK
         if: success()
