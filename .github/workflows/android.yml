@@ -13,25 +13,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: '17'
           distribution: 'temurin'
-          # Otomatis mengelola cache untuk Gradle
-          cache: gradle 
+          # Mengaktifkan cache agar build berikutnya lebih cepat
+          cache: gradle
           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
           
       - name: Build Debug APK
         run: |
-          # Tidak perlu install gradle manual, gunakan wrapper
-          ./gradlew clean assembleDebug --stacktrace
+          # Menggunakan ./gradlew (wrapper) untuk menghindari error "Task not found"
+          # --no-daemon digunakan agar lebih stabil di lingkungan CI
+          # --stacktrace membantu melihat detail jika KSP error lagi
+          ./gradlew clean assembleDebug --no-daemon --stacktrace
           
       - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: anix-android
+          name: anix-android-debug
+          # Path wildcard agar tidak error jika nama file berbeda
           path: app/build/outputs/apk/debug/*.apk
