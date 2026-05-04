@@ -18,30 +18,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          # Kita matikan cache sementara untuk memastikan build benar-benar fresh
-          # cache: gradle 
+          cache: gradle
           
-      - name: Cleanup & Debug (PENTING)
-        run: |
-          # Hapus cache gradle yang mungkin korup di runner
-          rm -rf ~/.gradle/caches/
-          rm -rf ~/.gradle/wrapper/
-          
-          # Cek 5 baris terakhir gradlew untuk memastikan perbaikan kita ada di sana
-          echo "--- Verifikasi File Gradlew ---"
-          tail -n 5 gradlew
-          echo "-------------------------------"
-          
-          chmod +x gradlew
+      - name: Fix Permissions
+        run: chmod +x gradlew
           
       - name: Build Debug APK
-        run: |
-          # Pakai --no-daemon dan jalankan secara eksplisit
-          ./gradlew clean assembleDebug --no-daemon --stacktrace
-          
-      - name: Upload APK
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: anix-android-debug
-          path: app/build/outputs/apk/debug/*.apk
+        # Kita panggil perintahnya secara eksplisit di shell bash
+        run: bash gradlew clean assembleDebug --no-daemon --stacktrace
