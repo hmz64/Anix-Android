@@ -20,7 +20,12 @@ import coil.compose.AsyncImage
 import com.anix.rx.data.model.*
 import com.anix.rx.domain.repository.*
 import com.anix.rx.ui.components.*
+import androidx.compose.ui.platform.LocalContext
 import com.anix.rx.ui.theme.Primary
+import com.anix.rx.ui.theme.ThemePreferences
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import com.anix.rx.ui.viewmodel.ProfileViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -261,11 +266,11 @@ fun ProfileScreen(
                         // Watch History
                         items(state.watchHistory) { item ->
                             ListItem(
-                                headlineContent = { Text(item.animeTitle) },
+                                headlineContent = { Text(item.title) },
                                 supportingContent = { Text("Episode ${item.episodeNumber}") },
                                 leadingContent = {
                                     AsyncImage(
-                                        model = item.animeThumbnail,
+                                        model = item.thumbnail,
                                         contentDescription = null,
                                         modifier = Modifier
                                             .size(56.dp)
@@ -279,7 +284,7 @@ fun ProfileScreen(
                         // Favorites
                         items(state.favorites) { item ->
                             ListItem(
-                                headlineContent = { Text(item.animeTitle) },
+                                headlineContent = { Text(item.title) },
                                 supportingContent = { Text("Rating: ${item.rating}") },
                                 leadingContent = {
                                     AsyncImage(

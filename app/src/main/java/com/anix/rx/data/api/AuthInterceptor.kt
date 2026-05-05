@@ -9,6 +9,7 @@ import com.anix.rx.data.api.PreferencesKeys.TOKEN
 import com.anix.rx.data.api.PreferencesKeys.REFRESH_TOKEN
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
@@ -67,14 +68,14 @@ class AuthInterceptor @Inject constructor(
                         .url("$baseUrl/api/refresh")
                         .post(
                             okhttp3.RequestBody.create(
-                                okhttp3.MediaType.parse("application/json"),
+                                "application/json".toMediaType(),
                                 """{"refresh_token":"$refreshToken"}"""
                             )
                         )
                         .build()
                     val refreshResponse = refreshClient.newCall(refreshRequest).execute()
                     if (refreshResponse.isSuccessful) {
-                        val body = refreshResponse.body()?.string()
+                        val body = refreshResponse.body?.string()
                         // Parse token manually (simple JSON extraction)
                         val newToken = body?.let {
                             Regex(""""token"\s*:\s*"([^"]+)"""").find(it)?.groupValues?.getOrNull(1)

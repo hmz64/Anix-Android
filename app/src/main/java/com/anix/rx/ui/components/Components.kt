@@ -3,6 +3,7 @@ package com.anix.rx.ui.components
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -335,9 +336,8 @@ fun <T> HorizontalScrollList(
     itemContent: @Composable (T) -> Unit
 ) {
     Row(
-        modifier = modifier.horizontalScroll(rememberScrollState()),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
+        modifier = modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items.forEach { item ->
             itemContent(item)
@@ -494,8 +494,8 @@ fun FloatingBottomNav(
     NavigationBar(
         modifier = modifier
             .padding(16.dp)
-            .shadow(16.dp, RoundedCornerShape(24.dp)),
-        shape = RoundedCornerShape(24.dp),
+            .shadow(16.dp, RoundedCornerShape(24.dp))
+            .clip(RoundedCornerShape(24.dp)),
         tonalElevation = 0.dp
     ) {
         items.forEach { item ->
@@ -570,4 +570,22 @@ fun RatingDialog(
             }
         }
     )
+}
+
+// ============== COMMENT ITEM ==============
+@Composable
+fun CommentItem(comment: com.anix.rx.data.model.Comment, modifier: Modifier = Modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            AsyncImage(model = comment.avatar, contentDescription = "Avatar",
+                modifier = Modifier.size(32.dp).clip(CircleShape))
+            Column {
+                Text(text = comment.username, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                comment.createdAt?.let { Text(text = it, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            }
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(text = comment.content, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(start = 40.dp))
+        HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+    }
 }

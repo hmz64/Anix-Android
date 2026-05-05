@@ -134,13 +134,9 @@ fun AnimeDetailScreen(
                             )
                         }
                         
-                        anime.genres?.let { genres ->
+                        if (anime.genres.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(12.dp))
-                            Text(
-                                genres,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
+                            GenreList(genres = anime.genres)
                         }
                         
                         anime.synopsis?.let { syn ->

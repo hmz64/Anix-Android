@@ -54,8 +54,14 @@ fun AniXApp(initialDeepLink: DeepLinkData? = null) {
                 exit = slideOutVertically(targetOffsetY = { it }) + fadeOut()
             ) {
                 FloatingBottomNav(
-                    navController = navController,
-                    currentRoute = currentRoute
+                    currentRoute = currentRoute ?: "",
+                    onNavigate = { route ->
+                        navController.navigate(route) {
+                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 )
             }
         }

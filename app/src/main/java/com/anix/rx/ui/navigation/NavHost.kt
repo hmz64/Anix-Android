@@ -1,6 +1,12 @@
 package com.anix.rx.ui.navigation
 
 import androidx.compose.animation.*
+import com.anix.rx.ui.screens.moderator.ModeratorScreen
+import com.anix.rx.ui.screens.admin.AdminScreen
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.foundation.layout.padding
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
@@ -38,7 +44,8 @@ sealed class Screen(val route: String) {
 @Composable
 fun AniXNavHost(
     navController: NavHostController,
-    startDestination: String = Screen.Login.route
+    startDestination: String = Screen.Login.route,
+    snackbarHostState: SnackbarHostState = SnackbarHostState()
 ) {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
@@ -110,7 +117,8 @@ fun AniXNavHost(
                 },
                 onProfileClick = { navController.navigate(Screen.Profile.route) },
                 onModeratorClick = { navController.navigate(Screen.Moderator.route) },
-                onAdminClick = { navController.navigate(Screen.Admin.route) }
+                onAdminClick = { navController.navigate(Screen.Admin.route) },
+onBrowseClick = { navController.navigate(Screen.Browse.route) }
             )
         }
         
