@@ -586,6 +586,6 @@ fun CommentItem(comment: com.anix.rx.data.model.Comment, modifier: Modifier = Mo
         }
         Spacer(modifier = Modifier.height(4.dp))
         Text(text = comment.content, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(start = 40.dp))
-        HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+        Divider(modifier = Modifier.padding(top = 8.dp))
     }
 }
