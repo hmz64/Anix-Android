@@ -22,6 +22,15 @@ jobs:
           
       - name: Fix Permissions
         run: chmod +x gradlew
+
+      - name: Force Clean Cache
+        run: |
+          echo "Force cleaning all caches..."
+          rm -rf ~/.gradle/caches
+          rm -rf ~/.gradle/build-cache
+          rm -rf app/build
+          rm -rf build
+          echo "Cache cleaned successfully"
           
       - name: Build Debug APK
         # Kita panggil perintahnya secara eksplisit di shell bash
