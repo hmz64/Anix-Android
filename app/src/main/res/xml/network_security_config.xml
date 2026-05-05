@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Debug: Allow cleartext for local dev -->
+    <domain-config>
+        <domain includeSubdomains="true">192.168.1.15</domain>
+        <domain includeSubdomains="true">localhost</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+    <!-- Production: Enforce TLS, pin certificate -->
+    <base-config>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
